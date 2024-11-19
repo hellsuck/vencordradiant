@@ -21,7 +21,7 @@ import definePlugin from "@utils/types";
 
 export default definePlugin({
     name: "Radiant Autofill",
-    description: "Stuff For radiant",
+    description: "Stuff For radiant serverr",
     authors: [Devs.Vince],
     commands: [
 
