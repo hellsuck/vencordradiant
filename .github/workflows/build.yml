@@ -36,8 +36,6 @@ jobs:
 
             - name: Build
               run: pnpm build
-            - name: Inject
-              run: pnpm inject
 
             - name: Generate plugin list
               run: pnpm generatePluginJson dist/plugins.json dist/plugin-readmes.json
