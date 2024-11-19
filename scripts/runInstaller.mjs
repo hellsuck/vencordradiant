@@ -116,17 +116,3 @@ async function ensureBinary() {
 
 const installerBin = await ensureBinary();
 
-console.log("Now running Installer...");
-
-try {
-    execFileSync(installerBin, {
-        stdio: "inherit",
-        env: {
-            ...process.env,
-            VENCORD_USER_DATA_DIR: BASE_DIR,
-            VENCORD_DEV_INSTALL: "1"
-        }
-    });
-} catch {
-    console.error("Something went wrong. Please check the logs above.");
-}
