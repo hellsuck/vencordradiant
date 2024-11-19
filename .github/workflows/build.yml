@@ -44,34 +44,20 @@ jobs:
               run: |
                   rm -rf dist/*-unpacked dist/monaco Vencord.user.css vencordDesktopRenderer.css vencordDesktopRenderer.css.map
 
-           - name: Get some values needed for the release
-  run: |
-      echo "RELEASE_TAG=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
-      echo "Set RELEASE_TAG to $(git rev-parse --short HEAD)"
+            - name: Get some values needed for the release
+              id: release_values
+              run: |
+                  echo "release_tag=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
 
-- name: Ensure release exists
-  if: github.repository == 'hellsuck/vencordradiant'
-  run: |
-      if ! gh release view devbuild; then
-          echo "Release 'devbuild' not found. Creating it..."
-          gh release create devbuild $RELEASE_TAG --title "DevBuild $RELEASE_TAG"
-      else
-          echo "Release 'devbuild' exists."
-      fi
-  env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      RELEASE_TAG: ${{ env.RELEASE_TAG }}
+            - name: Upload DevBuild as release
+              if: github.repository == 'hellsuck/vencordradiant'
+              run: |
+                  gh release upload devbuild --clobber dist/*
+                  gh release edit devbuild --title "DevBuild $RELEASE_TAG"
 
-- name: Upload DevBuild as release
-  if: github.repository == 'hellsuck/vencordradiant'
-  run: |
-      echo "Uploading files to release 'devbuild' with tag $RELEASE_TAG"
-      gh release upload devbuild --clobber dist/*
-      gh release edit devbuild --title "DevBuild $RELEASE_TAG"
-  env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      RELEASE_TAG: ${{ env.RELEASE_TAG }}
-
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  RELEASE_TAG: ${{ env.release_tag }}
 
             - name: Upload DevBuild to builds repo
               if: github.repository == 'hellsuck/vencordradiant'
