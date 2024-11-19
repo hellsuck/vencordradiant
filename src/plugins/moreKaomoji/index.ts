@@ -44,7 +44,8 @@ export default definePlugin({
         { name: "0xCheatsFiveM", description: "Sends them to the 0xCheats FiveM guide", msg: "You can access the installation guide for 0xCheats Fivem by visiting the following link: https://radiant.cc/forum/topic/59-oxcheats-fivem.html" },
         { name: "Dream", description: "Sends them to the Dream Client Minecraft guide", msg: "You can access the installation guide for Dream by visiting the following link: https://radiant.cc/forum/topic/80-minecraft-dream-client.html" },
         { name: "EtherealSP", description: "Sends them to the Ethereal Spoofer guide", msg: "You can access the installation guide for Ethereal Spoofer by visiting the following link: https://radiant.cc/forum/topic/129-ethereal-hwid-spoofer.html" },
-        { name: "FecurityCOD", description: "Sends them to the Fecurity COD guide", msg: "You can access the installation guide for Fecurity For Call of duty by visiting the following link: https://radiant.cc/forum/topic/69-call-of-duty-warzone-fecurity.html" }
+        { name: "FecurityCOD", description: "Sends them to the Fecurity COD guide", msg: "You can access the installation guide for Fecurity For Call of duty by visiting the following link: https://radiant.cc/forum/topic/69-call-of-duty-warzone-fecurity.html" },
+        { name: "Welcome", description: "Welcomes the customer", msg: "Welcome to radiant!" }
     ].map(data => ({
         ...data,
 
