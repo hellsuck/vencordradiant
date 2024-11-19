@@ -52,6 +52,9 @@ jobs:
             - name: Upload DevBuild as release
               if: github.repository == 'hellsuck/vencordradiant'
               run: |
+               if ! gh release view devbuild; then
+                 gh release create devbuild $RELEASE_TAG --title "DevBuild $RELEASE_TAG"
+               fi
                   gh release upload devbuild --clobber dist/*
                   gh release edit devbuild --title "DevBuild $RELEASE_TAG"
               env:
