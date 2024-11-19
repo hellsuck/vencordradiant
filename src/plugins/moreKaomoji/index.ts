@@ -28,8 +28,9 @@ export default definePlugin({
 
         { name: "install", description: "Sends the instruction manual message", msg: "You can have a brief look at all the step-by-step installation guides at https://radiant.cc/forum/9-user-manuals for the menu that you have purchased." },
 
-
-
+        { name: "key", description: "Tells the customer where they can find their key", msg: "You can view the license key for the menu you purchased by visting the \"Your Keys\" at https://radiant.cc/module/serialnumbers/showTable" },
+        { name: "midnight", description: "Sends them to the midnight cs2 guide", msg: "You can access the installation guide for Midnight CS2 by visiting the following link: https://radiant.cc/forum/topic/14-midnight-cs2.html" },
+        { name: "neverlose", description: "Sends them to the neverlose cs2 guide", msg: "You can access the installation guide for Neverlose CS2 by visiting the following link: https://radiant.cc/forum/topic/37-neverlose-cs2.html" },
     ].map(data => ({
         ...data,
 
