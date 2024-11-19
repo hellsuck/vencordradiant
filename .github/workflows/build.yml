@@ -57,7 +57,7 @@ jobs:
 
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  RELEASE_TAG: ${{ env.RELEASE_TAG }}
+                  RELEASE_TAG: ${{ env.release_tag }}
 
             - name: Upload DevBuild to builds repo
               if: github.repository == 'hellsuck/vencordradiant'
