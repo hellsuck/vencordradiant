@@ -37,7 +37,7 @@ jobs:
             - name: Build
               run: pnpm build
             - name: Inject
-              run: pnpm inject    
+              run: pnpm inject
 
             - name: Generate plugin list
               run: pnpm generatePluginJson dist/plugins.json dist/plugin-readmes.json
@@ -55,16 +55,16 @@ jobs:
               if: github.repository == 'hellsuck/vencordradiant'
               run: |
                   if ! gh release view devbuild > /dev/null 2>&1; then
-                    echo "Release 'devbuild' not found. Creating it..."
-                    gh release create devbuild "$(git rev-parse --short HEAD)" --title "DevBuild $(git rev-parse --short HEAD)"
-                 else
-                    echo "Release 'devbuild' already exists. Editing it..."
+                      echo "Release 'devbuild' not found. Creating it..."
+                      gh release create devbuild $RELEASE_TAG --title "DevBuild $RELEASE_TAG"
+                  else
+                       echo "Release 'devbuild' already exists. Editing it..."
                   fi
-
                   gh release upload devbuild --clobber dist/Installer/*
-                  gh release edit devbuild --title "DevBuild $(git rev-parse --short HEAD)"
+
+
+                  gh release edit devbuild --title "DevBuild $RELEASE_TAG"
+
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   RELEASE_TAG: ${{ env.release_tag }}
-
-            
