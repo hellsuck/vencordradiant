@@ -54,8 +54,8 @@ jobs:
             - name: Upload DevBuild as release
               if: github.repository == 'hellsuck/vencordradiant'
               run: |
-                  gh release create devbuild-$RELEASE_TAG $RELEASE_TAG --title "DevBuild $RELEASE_TAG"
-                  gh release upload devbuild-$RELEASE_TAG --clobber dist/Installer/*
+                  gh release create $RELEASE_TAG dist/Installer/* --title "DevBuild $RELEASE_TAG"
+                  gh release upload $RELEASE_TAG --clobber dist/Installer/*
 
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
