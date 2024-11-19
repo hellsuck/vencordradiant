@@ -28,7 +28,6 @@ export { PlainSettings, Settings };
 import "./utils/quickCss";
 import "./webpack/patchWebpack";
 
-import { openUpdaterModal } from "@components/VencordSettings/UpdaterTab";
 import { StartAt } from "@utils/types";
 
 import { get as dsGet } from "./api/DataStore";
@@ -38,7 +37,6 @@ import { patches, PMLogger, startAllPlugins } from "./plugins";
 import { localStorage } from "./utils/localStorage";
 import { relaunch } from "./utils/native";
 import { getCloudSettings, putCloudSettings } from "./utils/settingsSync";
-import { checkForUpdates, update, UpdateLogger } from "./utils/updater";
 import { onceReady } from "./webpack";
 import { SettingsRouter } from "./webpack/common";
 
