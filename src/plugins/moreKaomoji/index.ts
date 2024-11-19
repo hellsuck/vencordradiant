@@ -20,8 +20,8 @@ import { Devs } from "@utils/constants";
 import definePlugin from "@utils/types";
 
 export default definePlugin({
-    name: "Radiant Autofill",
-    description: "Stuff For radiant serverr",
+    name: "Radiant Commands",
+    description: "Stuff For radiant server",
     authors: [Devs.Vince],
     commands: [
 
