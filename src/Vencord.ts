@@ -100,7 +100,7 @@ async function init() {
                 await update();
                 if (Settings.autoUpdateNotification)
                     setTimeout(() => showNotification({
-                        title: "Vencord has been updated!",
+                        title: "Vencord has been updateds!",
                         body: "Click here to restart",
                         permanent: true,
                         noPersist: true,
