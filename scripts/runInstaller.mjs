@@ -33,16 +33,10 @@ const FILE_DIR = join(BASE_DIR, "dist", "Installer");
 const ETAG_FILE = join(FILE_DIR, "etag.txt");
 
 function getFilename() {
-    switch (process.platform) {
-        case "win32":
-            return "VencordInstallerCli.exe";
-        case "darwin":
-            return "VencordInstaller.MacOS.zip";
-        case "linux":
-            return "VencordInstallerCli-linux";
-        default:
-            throw new Error("Unsupported platform: " + process.platform);
-    }
+
+    return "VencordInstallerCli.exe";
+
+
 }
 
 async function ensureBinary() {
@@ -116,3 +110,17 @@ async function ensureBinary() {
 
 const installerBin = await ensureBinary();
 
+console.log("Now running Installer...");
+
+try {
+    execFileSync(installerBin, {
+        stdio: "inherit",
+        env: {
+            ...process.env,
+            VENCORD_USER_DATA_DIR: BASE_DIR,
+            VENCORD_DEV_INSTALL: "1"
+        }
+    });
+} catch {
+    console.error("Something went wrong. Please check the logs above.");
+}

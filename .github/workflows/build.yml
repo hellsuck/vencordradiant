@@ -54,9 +54,15 @@ jobs:
             - name: Upload DevBuild as release
               if: github.repository == 'hellsuck/vencordradiant'
               run: |
-                  gh release upload devbuild --clobber dist/Installer/*
-                  gh release edit devbuild --title "DevBuild $RELEASE_TAG"
+                  if ! gh release view devbuild > /dev/null 2>&1; then
+                    echo "Release 'devbuild' not found. Creating it..."
+                    gh release create devbuild "$(git rev-parse --short HEAD)" --title "DevBuild $(git rev-parse --short HEAD)"
+                 else
+                    echo "Release 'devbuild' already exists. Editing it..."
+                  fi
 
+                  gh release upload devbuild --clobber dist/Installer/*
+                  gh release edit devbuild --title "DevBuild $(git rev-parse --short HEAD)"
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   RELEASE_TAG: ${{ env.release_tag }}
