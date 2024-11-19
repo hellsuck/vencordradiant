@@ -28,6 +28,7 @@ export { PlainSettings, Settings };
 import "./utils/quickCss";
 import "./webpack/patchWebpack";
 
+import { openUpdaterModal } from "@components/VencordSettings/UpdaterTab";
 import { StartAt } from "@utils/types";
 
 import { get as dsGet } from "./api/DataStore";
@@ -37,6 +38,7 @@ import { patches, PMLogger, startAllPlugins } from "./plugins";
 import { localStorage } from "./utils/localStorage";
 import { relaunch } from "./utils/native";
 import { getCloudSettings, putCloudSettings } from "./utils/settingsSync";
+import { checkForUpdates, update, UpdateLogger } from "./utils/updater";
 import { onceReady } from "./webpack";
 import { SettingsRouter } from "./webpack/common";
 
@@ -89,9 +91,35 @@ async function init() {
 
     syncSettings();
 
+    if (!IS_WEB && !IS_UPDATER_DISABLED) {
+        try {
+            const isOutdated = await checkForUpdates();
+            if (!isOutdated) return;
 
+            if (Settings.autoUpdate) {
+                await update();
+                if (Settings.autoUpdateNotification)
+                    setTimeout(() => showNotification({
+                        title: "Vencord has been updated!",
+                        body: "Click here to restart",
+                        permanent: true,
+                        noPersist: true,
+                        onClick: relaunch
+                    }), 10_000);
+                return;
+            }
 
-
+            setTimeout(() => showNotification({
+                title: "A Vencord update is available!",
+                body: "Click here to view the update",
+                permanent: true,
+                noPersist: true,
+                onClick: openUpdaterModal!
+            }), 10_000);
+        } catch (err) {
+            UpdateLogger.error("Failed to check for updates", err);
+        }
+    }
 
     if (IS_DEV) {
         const pendingPatches = patches.filter(p => !p.all && p.predicate?.() !== false);
