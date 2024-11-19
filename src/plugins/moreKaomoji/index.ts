@@ -20,7 +20,7 @@ import { Devs } from "@utils/constants";
 import definePlugin from "@utils/types";
 
 export default definePlugin({
-    name: "Radiant",
+    name: "Radiants",
     description: "Stuff For radiant server",
     authors: [Devs.Vince],
     commands: [
