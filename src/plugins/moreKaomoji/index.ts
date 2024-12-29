@@ -20,7 +20,7 @@ import { Devs } from "@utils/constants";
 import definePlugin from "@utils/types";
 
 export default definePlugin({
-    name: "RadiantThing",
+    name: "Radiant Tweaks",
     description: "Stuff For radiant server",
     authors: [Devs.Vince],
     commands: [
@@ -52,7 +52,9 @@ export default definePlugin({
         { name: "0xCheatsRDR2", description: "Sends them to the 0xCheats RDR2 guide", msg: "You can access the installation guide for 0xCheats RDR2 by visiting the following link: https://radiant.cc/forum/topic/42-oxcheats-rdr2.html" },
         { name: "FortitudeRDR2", description: "Sends them to the Fortitude RDR2 guide", msg: "You can access the installation guide for Fortitude RDR2 by visiting the following link: https://radiant.cc/forum/topic/45-fortitude-rdr2.html" },
         { name: "ExodusRDR2", description: "Sends them to the Exodus RDR2 guide", msg: "You can access the installation guide for Exodus RDR2 by visiting the following link: https://radiant.cc/forum/topic/43-exodus-r2d2.html" },
-        { name: "Raiden", description: "Sends them the Raiden GTA V guide", msg: "Make an account on https://raiden.gg and after you have made an account login to the dashboard, \nIn the dashboard press control panel and in the licence activation box paste in the key you recieved from us and press redeem \nPress the download button in the sidebar and download the loader" }
+        { name: "Raiden", description: "Sends them the Raiden GTA V guide", msg: "Make an account on https://raiden.gg and after you have made an account login to the dashboard, \nIn the dashboard press control panel and in the licence activation box paste in the key you recieved from us and press redeem \nPress the download button in the sidebar and download the loader" },
+        { name: "Ring-1", description: "Sends them the Ring-1 guide for every game.", msg: "You can access the installation guide for Ring-1 by visiting the following link: https://radiant.cc/forum/topic/140-ring-1.html" },
+        { name: "nl-topup", description: "Tells them the bot has been topped up", msg: "The Bot has been topped up now, sorry for the delay." }
     ].map(data => ({
         ...data,
 
